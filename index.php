@@ -40,8 +40,8 @@ include_once "header.php";
     <div class="row">
     <div class="col-12">
         <nav class="navbar navbar-light px-0 justify-content-end">
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline" action="<?= isset($_GET['page'])?'?page='.$_GET['page'].'&' : '' ?>" method="get">
+                <input class="form-control mr-sm-2" type="search" name='s' placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </nav>
@@ -77,7 +77,7 @@ include_once "header.php";
             <?php 
                 $pagLink = "<ul class='pagination justify-content-center'>";  
                 for ($i=1; $i<=$total_pages; $i++) {
-                              $pagLink .= "<li class='page-item'><a class='page-link' href='index.php?page=".$i."'>".$i."</a></li>";	
+                              $pagLink .= "<li class='page-item'><a class='page-link' href='?page=".$i."'>".$i."</a></li>";	
                 }
                 echo $pagLink . "</ul>"; 
             ?>
