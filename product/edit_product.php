@@ -1,5 +1,5 @@
 <?php 
-require_once "database.php";
+require_once "../config.php";
 
 $productId = $_GET['id'];
 
@@ -10,18 +10,14 @@ $stmt->execute();
 
 $product = $stmt->fetch();
 
-$sql1 = "SELECT * FROM categories";
-
-$stmt1 = $conn->prepare($sql1); 
-
-$stmt1->execute();
-
-
-$categories = $stmt1->fetchAll();
+if(!isset($product)) {
+    echo("Product không tồn tại");
+    header('location ../index.php');
+}
 
 ?>
 <?php 
-include_once "header.php";
+include_once "../header.php";
 
 ?>
 
@@ -30,7 +26,7 @@ include_once "header.php";
     <div class="col-md-8 offset-2">
         <h3 class="text-center">Edit Product: <?= $product['title'] ?></h3>
 
-        <form action="update_product.php" method="post" enctype="multipart/form-data">
+        <form action="//<?= $domain ?>/product/update_product.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $product['id']; ?>">
             <div class="form-group">
                 <label for="">Title</label>
@@ -66,14 +62,7 @@ include_once "header.php";
 
 </div>
 
-
-
-
-
-
-
-
 <?php 
-include_once "footer.php";
+include_once "../footer.php";
 
 ?>

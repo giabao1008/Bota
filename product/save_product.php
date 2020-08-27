@@ -1,7 +1,10 @@
 <?php
 // 1. Connect to Database
-require_once "database.php";
+require_once "../config.php";
 
+//get curren user id 
+session_start();
+$userID = $_SESSION['id'];
 // 2. Collect Data from FORM
 $title = $_POST['title'];
 $description = $_POST['description'];
@@ -16,18 +19,18 @@ $stmt->bindValue(":title", $title);
 $stmt->bindValue(":description", $description);
 $stmt->bindValue(":price", $price);
 if($file['size'] > 0){
-    $fileName = 'uploads/'.time().'-'.$file['name'];
+    $fileName = '../uploads/'.time().'-'.$file['name'];
     $stmt->bindValue(":img", $fileName);
     move_uploaded_file($file['tmp_name'], $fileName);
 } else {
     $stmt->bindValue(":img", 'noimage.png');
 }
-$stmt->bindValue(":user_id", 1);
+$stmt->bindValue(":user_id", $userID);
 //Execute
 $check =  $stmt->execute();
 
 // Redirect to list page
-if($check) header("location: index.php"); 
+if($check) header("location: ../index.php"); 
 else dd($stmt->errorInfo());
 
 

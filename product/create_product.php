@@ -1,12 +1,12 @@
 <?php 
-include_once "header.php";
+include_once "../header.php";
 ?>
 
 <div class="container">
 <div class="row">
     <div class="col-md-8 offset-2">
         <h3 class="text-center">Create New Product</h3>
-        <form action="save_product.php" method="post" enctype="multipart/form-data">
+        <form action="//<?=$domain?>/product/save_product.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="">Title</label>
                 <input type="text" name="title" class="form-control">
@@ -40,6 +40,6 @@ include_once "header.php";
 </div>
 
 <?php 
-include_once "footer.php";
+include_once "../footer.php";
 
 ?>

@@ -1,5 +1,5 @@
 <?php 
-require_once "database.php";
+require_once "../config.php";
 
 $productId = $_GET['id'];
 
@@ -12,14 +12,14 @@ $product = $stmt->fetch();
 
 ?>
 <?php 
-include_once "header.php";
+include_once "../header.php";
 
 ?>
 <div class="container">
    <div class="row justify-content-center mt-5">
        <div class="col-4">
         <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="<?php echo $product['img'] ?>" alt="<?= $product['title'] ?>">
+                <img class="card-img-top" src="//<?= $domain ?>/<?php echo $product['img'] ?>" alt="<?= $product['title'] ?>">
                 <div class="card-body">
                     <h5 class="card-title"><?= $product['title'] ?></h5>
                     <ul class="list-group list-group-flush ">
@@ -38,5 +38,5 @@ include_once "header.php";
 
 
 <?php 
-include_once "footer.php";
+include_once "../footer.php";
 ?>

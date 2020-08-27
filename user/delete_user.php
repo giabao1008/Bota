@@ -1,29 +1,26 @@
 <?php
 // 1. Connect to Database
-require_once "database.php";
+require_once "../config.php";
 
 // 2. Collect Data from FORM
 $id = $_GET['id'];
 
-$sql1 = "SELECT * FROM bota_product WHERE id = :id";
+$sql1 = "SELECT * FROM bota_user WHERE id = :id";
 $stmt1 = $conn->prepare($sql1);
 $stmt1->bindValue(":id", $id);
 $stmt1->execute();
 
-$product = $stmt1->fetch();
+$user = $stmt1->fetch();
 
-if(!$product){
-    echo "San pham khong ton tai"; die;
+if(!$user){
+    echo "User khong ton tai"; die;
 }
 
-// Delete image
-unlink($product['img']);
 
-
-$sql = "DELETE from bota_product WHERE id=:id";
+$sql = "DELETE from bota_user WHERE id=:id";
 
 $stmt =  $conn->prepare($sql);
-$stmt->bindValue(":id", $product['id']);
+$stmt->bindValue(":id", $user['id']);
 
 $check = $stmt->execute();
 if($check ){
